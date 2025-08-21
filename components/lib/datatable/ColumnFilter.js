@@ -173,7 +173,7 @@ export const ColumnFilter = React.memo((props) => {
             filters[field].constraints[0] = { value: null, matchMode: defaultConstraint.matchMode };
         } else {
             filters[field].value = null;
-            filters[field].matchMode = defaultConstraint.matchMode;
+            filters[field].matchMode = defaultConstraint ? defaultConstraint.matchMode : filters[field].matchMode;
         }
 
         filterClearCallback && filterClearCallback();
@@ -262,6 +262,7 @@ export const ColumnFilter = React.memo((props) => {
         props.onFilterChange(filters);
         props.onFilterApply();
         hide();
+        iconRef.current?.focus();
     };
 
     const onRowMatchModeKeyDown = (event, matchMode, clear) => {

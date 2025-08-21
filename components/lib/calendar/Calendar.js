@@ -395,11 +395,11 @@ export const Calendar = React.memo(
 
                     newViewDate.setMonth(11);
                     newViewDate.setFullYear(newYear);
-                    props.onMonthChange && props.onMonthChange({ month: 11, year: newYear });
+                    props.onMonthChange && props.onMonthChange({ month: 12, year: newYear });
                     setCurrentMonth(11);
                 } else {
                     newViewDate.setMonth(newViewDate.getMonth() - 1);
-                    props.onMonthChange && props.onMonthChange({ month: currentMonth - 1, year: currentYear });
+                    props.onMonthChange && props.onMonthChange({ month: currentMonth, year: currentYear });
                     setCurrentMonth((prevState) => prevState - 1);
                 }
             } else if (currentView === 'month') {
@@ -444,11 +444,11 @@ export const Calendar = React.memo(
 
                     newViewDate.setMonth(0);
                     newViewDate.setFullYear(newYear);
-                    props.onMonthChange && props.onMonthChange({ month: 0, year: newYear });
+                    props.onMonthChange && props.onMonthChange({ month: 1, year: newYear });
                     setCurrentMonth(0);
                 } else {
                     newViewDate.setMonth(newViewDate.getMonth() + 1);
-                    props.onMonthChange && props.onMonthChange({ month: currentMonth + 1, year: currentYear });
+                    props.onMonthChange && props.onMonthChange({ month: currentMonth + 2, year: currentYear });
                     setCurrentMonth((prevState) => prevState + 1);
                 }
             } else if (currentView === 'month') {
@@ -547,8 +547,8 @@ export const Calendar = React.memo(
             const timeMeta = {
                 hours: today.getHours(),
                 minutes: today.getMinutes(),
-                seconds: today.getSeconds(),
-                milliseconds: today.getMilliseconds()
+                seconds: props.showSeconds ? today.getSeconds() : 0,
+                milliseconds: props.showMillisec ? today.getMilliseconds() : 0
             };
 
             updateViewDate(event, today);
@@ -1702,7 +1702,7 @@ export const Calendar = React.memo(
                 } else {
                     let time = getCurrentDateTime();
 
-                    [hours, minutes, seconds, milliseconds] = [time.getHours(), time.getMinutes(), time.getSeconds(), time.getMilliseconds()];
+                    [hours, minutes, seconds, milliseconds] = [time.getHours(), time.getMinutes(), props.showSeconds ? time.getSeconds() : 0, props.showMillisec ? time.getMilliseconds() : 0];
                 }
 
                 date.setHours(hours);
