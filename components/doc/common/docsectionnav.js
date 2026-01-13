@@ -106,7 +106,7 @@ export function DocSectionNav({ docs = [] }) {
                 {docs.map((item) => createItem(item))}
             </ul>
 
-            <div
+            {/* <div
                 style={{
                     marginTop: '2rem',
                     border: '1px solid light-dark(var(--surface-200),var(--surface-800))',
@@ -145,7 +145,7 @@ export function DocSectionNav({ docs = [] }) {
                         <span className="p-button-label p-c">Buy Now</span>
                     </a>
                 </span>
-            </div>
+            </div> */}
         </div>
     );
 }
